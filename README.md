@@ -1,4 +1,4 @@
-# Division A — Hackathon Submission Repository
+# Division A - Hackathon Submission Repository
 
 Welcome to the Division A repository. This is where all Division A teams submit their projects. Read this entire page before you start.
 
@@ -24,7 +24,7 @@ You only need one thing: a free GitHub account. If you do not have one, create i
 
 ---
 
-## Step 1 — Fork this repository
+## Step 1 - Fork this repository
 
 1. At the top-right of this repository page, click the **Fork** button.
 2. On the next screen, **UNCHECK the box that says "Copy the `main` branch only"** so that your fork copies the full repository, then click **Create fork**.
@@ -35,7 +35,7 @@ You only need one thing: a free GitHub account. If you do not have one, create i
 
 ---
 
-## Step 2 — Add your project to your team folder
+## Step 2 - Add your project to your team folder
 
 Work inside **your fork** (the copy under your own username), not this original repository.
 
@@ -57,7 +57,7 @@ You can repeat this step as many times as you need to add more files. Every uplo
 
 ---
 
-## Step 3 — Open ONE pull request
+## Step 3 - Open ONE pull request
 
 Do this only once, after your first upload.
 
@@ -81,7 +81,7 @@ A new pull request is only ever needed if your single pull request gets closed. 
 
 ---
 
-## Option B — Pushing from the command line (VS Code, Colab, or a terminal)
+## Option B - Pushing from the command line (VS Code, Colab, or a terminal)
 
 If you build your project in VS Code, Google Colab, or any local terminal, you can push with `git` instead of uploading through the website. You still fork first (Step 1 above), then use the commands below.
 
@@ -175,7 +175,3 @@ git push origin main
 > **4. Use the exact team folder assigned to you.**
 
 ---
-
-## Getting help
-
-If you are stuck on any step, contact the organizers do not issue in here.
