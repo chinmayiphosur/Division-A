@@ -110,5 +110,14 @@ streamlit run streamlit_app.py
 └── README.md               # Project documentation
 ```
 
+## Team Members
+
+| Name | Roll No. |
+|---|---|
+| Chinmayi Hosur | 153 |
+| Praneel N | 139 |
+| Sneha C | 165 |
+| Siddhart Prabhu | 137 |
+
 ## License
 Specify License Here
