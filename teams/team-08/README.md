@@ -1,17 +1,19 @@
 # Web Data Breach Impact Analyser
 
 ## Overview
-The Web Data Breach Impact Analyser is a comprehensive risk assessment tool designed to evaluate the severity and compliance implications of data breaches. It leverages historical data, industry benchmarks, and advanced language models to provide actionable insights, financial impact estimates, and regulatory obligations for affected organizations.
+The Web Data Breach Impact Analyser is an advanced, AI-driven risk assessment and compliance tool engineered to evaluate the severity and multifaceted implications of data breaches. Designed for cybersecurity professionals, compliance officers, and incident response teams, this platform provides immediate, actionable intelligence following a breach. 
 
-## Features
-- **Risk Assessment**: Calculates a dynamic risk score and severity level based on breached data fields, organizational sector, and affected user count.
-- **Regulatory Compliance Analyzer**: Automatically identifies compliance obligations under frameworks such as GDPR and DPDPA, providing specific article and section references.
-- **Financial Impact Estimation**: Estimates the minimum, likely, and maximum financial impact using industry cost benchmarks.
-- **Historical Breach Intelligence**: Correlates current incidents with historical breach data from HaveIBeenPwned and Privacy Rights Clearinghouse to find similar past breaches.
-- **AI-Powered Incident Response**: Generates executive summaries, immediate action plans, and professional breach disclosure letters using the Groq Llama 3.3 model.
-- **Automated Report Generation**: Compiles the complete analysis into a formatted DOCX report for stakeholders.
-- **Interactive Dashboard**: A comprehensive Streamlit interface featuring risk gauges, compliance timelines, and audit logs.
-- **RESTful API Backend**: Fully functional FastAPI backend providing programmatic access to the risk engine and datasets.
+By cross-referencing breached data against historical cyber incidents and industry-specific financial benchmarks, the Analyser synthesizes risk severity, regulatory exposure, and financial damages into a comprehensive incident report.
+
+## Tech Stack
+Our solution leverages a modern, high-performance technology stack to ensure real-time analysis and seamless user experience:
+
+- **Frontend / UI**: [Streamlit](https://streamlit.io/) — Chosen for rapid deployment of interactive, data-rich Python dashboards.
+- **Backend API**: [FastAPI](https://fastapi.tiangolo.com/) — A modern, high-performance web framework for building RESTful APIs.
+- **Artificial Intelligence**: [Groq Cloud](https://groq.com/) with **Llama 3.3 70B Versatile** — Utilized for ultra-fast, context-aware reasoning to generate executive summaries, compliance analysis, and disclosure letters.
+- **Data Visualization**: [Plotly](https://plotly.com/) — Powering interactive gauges, timelines, and analytical charts.
+- **Document Generation**: `python-docx` — For compiling automated, stakeholder-ready incident reports.
+- **Environment Management**: `python-dotenv` for secure environment variable handling.
 
 ## Architecture
 
@@ -25,15 +27,25 @@ graph LR
     Report --> User
 ```
 
-- **Frontend**: Streamlit
-- **Backend**: FastAPI
-- **AI Integration**: Groq API (Llama 3.3 70B Versatile)
-- **Data Visualization**: Plotly
-- **Document Generation**: python-docx
+## Core Features
+1. **Dynamic Risk Engine**: Calculates a precise risk score (1-10) and assigns a severity tier based on the sensitivity of breached Personally Identifiable Information (PII), the organization's sector, and the scale of the breach.
+2. **Automated Compliance Mapping (GDPR & DPDPA)**: Instantly identifies regulatory obligations and triggers specific legal articles based on the jurisdiction and the types of data exposed.
+3. **Financial Impact Forecasting**: Estimates minimum, highly likely, and maximum financial liabilities using robust industry cost benchmarks (e.g., IBM Cost of a Data Breach Report).
+4. **Historical Intelligence Matching**: Correlates the current breach profile with thousands of historical breaches to find patterns, overlapping fields, and similar attack vectors.
+5. **AI-Driven Incident Response**: Automatically drafts bespoke, professional breach notification letters and immediate remediation checklists using advanced LLM reasoning.
+6. **One-Click Report Generation**: Compiles the entire visual and textual analysis into a structured, downloadable DOCX report for executive stakeholders.
+
+## Data Sources & Intelligence
+The engine is powered by a synthesis of multiple authoritative datasets:
+- **HaveIBeenPwned (HIBP)**: Historical breach statistics and scale.
+- **Privacy Rights Clearinghouse (PRC)**: Past breach scenarios for similarity matching.
+- **GDPR Enforcement Tracker**: Precedents for regulatory fines based on specific PII fields.
+- **Sector Benchmarks**: Industry-specific financial impact metrics.
+- **Local PII Configurations**: Custom weightings and categorizations for sensitive data fields.
 
 ## Prerequisites
-- Python 3.9+
-- Groq API Key
+- **Python**: Version 3.9 or higher.
+- **API Key**: A valid [Groq API Key](https://console.groq.com/keys) to power the LLM engine.
 
 ## Setup and Installation
 
@@ -43,48 +55,60 @@ graph LR
    cd <repository_name>
    ```
 
-2. **Create a virtual environment (optional but recommended):**
+2. **Set up a Virtual Environment (Recommended):**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows use: venv\Scripts\activate
+   # On Windows:
+   venv\Scripts\activate
+   # On macOS/Linux:
+   source venv/bin/activate
    ```
 
-3. **Install dependencies:**
+3. **Install Dependencies:**
    ```bash
    pip install fastapi uvicorn streamlit pydantic groq python-docx python-dotenv plotly
    ```
 
 4. **Environment Configuration:**
-   Create a `.env` file in the root directory and add your Groq API key:
+   Create a `.env` file in the root directory and add your API keys:
    ```env
    GROQ_API_KEY=your_groq_api_key_here
    ```
 
 ## Running the Application
 
-The project consists of two main components that can be run independently or concurrently.
+This application operates using a decoupled architecture. You must run both the backend API and the frontend dashboard.
 
-### Starting the API Server (Backend)
+### 1. Start the API Server (Backend)
+Open a terminal and run the FastAPI server:
 ```bash
 python api.py
 ```
-Alternatively, run via uvicorn directly:
-```bash
-uvicorn api:app --host 127.0.0.1 --port 8000 --reload
-```
-The API documentation will be available at `http://127.0.0.1:8000/docs`.
+*(Alternatively, run via uvicorn directly: `uvicorn api:app --host 127.0.0.1 --port 8000 --reload`)*
+> The API swagger documentation will be accessible at `http://127.0.0.1:8000/docs`.
 
-### Starting the Interactive Dashboard (Frontend)
+### 2. Start the Interactive Dashboard (Frontend)
+Open a new terminal window, ensure your virtual environment is activated, and start Streamlit:
 ```bash
 streamlit run streamlit_app.py
 ```
-The dashboard will open in your default web browser automatically.
+> The web interface will automatically open in your default browser at `http://localhost:8501`.
 
 ## Project Structure
-- `api.py`: FastAPI server implementing the risk engine and compliance endpoints.
-- `streamlit_app.py`: Interactive user interface and visualization dashboard.
-- `logger.py`: Centralized logging utility for system monitoring and audit trails.
-- `data/`: Directory containing JSON and CSV datasets for PII configuration, compliance rules, historical breaches, and sector benchmarks.
+```text
+├── api.py                  # Core FastAPI server and risk engine logic
+├── streamlit_app.py        # Streamlit frontend, UI components, and visualizations
+├── logger.py               # Centralized logging utility and audit trail generator
+├── data/                   # Directory containing intelligence datasets
+│   ├── compliance_rules.json
+│   ├── pii_field_config.json
+│   ├── hibp_breaches_full.json
+│   ├── gdpr_enforcement_tracker.csv
+│   ├── sector_benchmarks.csv
+│   └── privacy_rights_clearinghouse.csv
+├── .env                    # Environment variables (not tracked in Git)
+└── README.md               # Project documentation
+```
 
 ## License
-[Specify License Here]
+Specify License Here
