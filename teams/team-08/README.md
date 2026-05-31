@@ -16,26 +16,13 @@ The Web Data Breach Impact Analyser is a comprehensive risk assessment tool desi
 ## Architecture
 
 ```mermaid
-graph TD
-    User([User]) -->|Interacts with| UI[Streamlit Frontend]
-    UI -->|Displays Visualizations| Plotly[Plotly Charts]
-    UI -->|REST API Calls| Backend[FastAPI Backend]
-    
-    Backend -->|Incident Data| Logger[Logger Utility]
-    Logger -->|Writes to| LogFile[(logs/app.log)]
-    
-    Backend -->|Prompts & Context| Groq[Groq API - Llama 3.3]
-    Groq -->|Compliance Analysis| Backend
-    
-    Backend -->|Loads Data| DataSets[(Local Datasets)]
-    DataSets -.-> PII[PII Config]
-    DataSets -.-> Compliance[Compliance Rules]
-    DataSets -.-> HIBP[HIBP Stats]
-    DataSets -.-> Fines[GDPR Fines]
-    DataSets -.-> Benchmarks[Sector Benchmarks]
-    
-    Backend -->|Generates| DOCX[python-docx Report]
-    DOCX -->|Downloads| User
+graph LR
+    User([User]) <-->|Interacts| UI[Streamlit UI]
+    UI <-->|API Calls| API[FastAPI Backend]
+    API <-->|LLM Analysis| Groq[Groq Llama 3.3]
+    API -->|Reads Data| Data[(Local Datasets)]
+    API -->|Generates| Report[DOCX Report]
+    Report --> User
 ```
 
 - **Frontend**: Streamlit
